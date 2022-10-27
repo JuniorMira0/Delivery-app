@@ -1,4 +1,4 @@
-const { loginModel } = require('../database/models');
+const { loginModel } = require('../../database/models');
 const ErrorBadRequest = require('../errors/ErrorBadRequest');
 
 const loginService = {
