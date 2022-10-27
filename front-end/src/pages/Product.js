@@ -5,13 +5,12 @@ export default function Product() {
   const [quantity, setQuantity] = useState(0);
 
   // componentDidMount
-  useEffect(async () => {
+
+  /*   useEffect(async () => {
     // Estrutura da comunicação com API
-    /*
-      const data = await fetch('[URL]').json();
-      setProducts(data);
-    */
-  }, []);
+    // const data = await fetch('[URL]').json();
+    // setProducts(data);
+  }, []); */
 
   return (
     <div>
