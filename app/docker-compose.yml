@@ -36,7 +36,7 @@ services:
       - MYSQL_PORT=3306
       - MYSQL_DB_NAME=delivery-app
       - MYSQL_USER=root
-      - MYSQL_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=123456
     healthcheck:
       test: ['CMD', 'lsof', '-t', '-i:3001'] # Caso utilize outra porta interna para o back, altere ela aqui também
       timeout: 10s
@@ -48,7 +48,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      - MYSQL_PASSWORD=123456
+      - MYSQL_ROOT_PASSWORD=123456
     restart: 'unless-stopped'
     healthcheck:
       test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost'] # Deve aguardar o banco ficar operacional
