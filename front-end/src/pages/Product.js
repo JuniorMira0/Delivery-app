@@ -1,7 +1,8 @@
-import NavBar from './components/Navbar';
+import NavBar from '../components/Navbar';
 
 export default function Product() {
-  const [products, setProducts] = useState([]);
+  const [products] = useState([]);
+  const [quantity, setQuantity] = useState(0);
 
   // componentDidMount
   useEffect(async () => {
@@ -24,9 +25,21 @@ export default function Product() {
               <p>{ price }</p>
               <p>{ name }</p>
               <img src={ urlImage } alt={ name } />
-              <button type="button">-</button>
-              <input type="number" placeholder="0" />
-              <button type="button">+</button>
+              <span>
+                <button
+                  type="button"
+                  onClick={ () => setQuantity(quantity - 1) }
+                >
+                  -
+                </button>
+                <input type="number" value={ quantity } />
+                <button
+                  type="button"
+                  onClick={ () => setQuantity(quantity + 1) }
+                >
+                  +
+                </button>
+              </span>
             </div>
           );
         })
