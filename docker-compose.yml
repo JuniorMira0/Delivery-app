@@ -2,7 +2,7 @@ version: '3.9'
 services:
   frontend:
     container_name: app_frontend
-    build: ./frontend
+    build: ./front-end
     ports:
       - 3000:3000
     working_dir: /app-frontend
@@ -17,7 +17,7 @@ services:
       retries: 5
   backend:
     container_name: app_backend
-    build: ./backend
+    build: ./back-end
     ports:
       - 3001:3001
     working_dir: /app-backend
