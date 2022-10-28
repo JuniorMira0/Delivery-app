@@ -22,7 +22,7 @@ services:
       - 3001:3001
     working_dir: /app-backend
     volumes:
-      - ./backend/src:/app-backend/src
+      - ./back-end/src:/app-backend/src
     depends_on:
       db:
         condition: service_healthy
@@ -32,11 +32,12 @@ services:
       - JWT_SECRET=jwt_secret
       # Os dados abaixo se referem ao container `db`
       # Dica: Relembre aqui da comunicação interna entre containers
-      - MYSQL_HOST=localhost
+      - MYSQL_HOST=db
       - MYSQL_PORT=3306
       - MYSQL_DB_NAME=delivery-app
       - MYSQL_USER=root
       - MYSQL_ROOT_PASSWORD=123456
+      - NODE_ENV=development
     healthcheck:
       test: ['CMD', 'lsof', '-t', '-i:3001'] # Caso utilize outra porta interna para o back, altere ela aqui também
       timeout: 10s
