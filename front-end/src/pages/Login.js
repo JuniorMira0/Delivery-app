@@ -50,7 +50,7 @@ export default function Login() {
         <label htmlFor="email">
           Email
           <input
-            type="text"
+            type="email"
             name="email"
             data-testid={ 1 }
             onChange={ handleInput }
@@ -61,7 +61,7 @@ export default function Login() {
         <label htmlFor="password">
           Senha
           <input
-            type="text"
+            type="password"
             name="password"
             data-testid={ 2 }
             onChange={ handleInput }
