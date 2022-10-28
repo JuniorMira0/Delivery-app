@@ -1,15 +1,17 @@
-const { UserModel } = require("../../database/models");
-const ErrorNotFound = require("../errors/ErrorNotFound");
-const { Op } = require("sequelize");
-var md5 = require("md5");
+const { Op } = require('sequelize');
+const md5 = require('md5');
+const { UserModel } = require('../../database/models');
+const ErrorNotFound = require('../errors/ErrorNotFound');
+const ErrorUnauthorized = require('../errors/ErrorUnauthorized');
 
 const loginService = {
   login: async ({ email, password }) => {
     const user = await UserModel.findOne({ where: { email } });
-    if (!user) throw new ErrorNotFound("Invalid fields");
+    if (!user) throw new ErrorNotFound('Invalid fields');
     const hashedPassword = md5(password);
-    if (hashedPassword !== user.dataValues.password)
-      throw new ErrorUnauthorized("Invalid password");
+    if (hashedPassword !== user.dataValues.password) {
+      throw new ErrorUnauthorized('Invalid password');
+    }
     delete user.dataValues.password;
     return user.dataValues;
   },
@@ -25,7 +27,7 @@ const loginService = {
       name,
       email,
       password: hashedPassword,
-      role: "customer",
+      role: 'customer',
     });
 
     return newUser;
