@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 import getProducts from '../services/product';
 
@@ -7,6 +8,7 @@ export default function Product() {
   const [quantity, setQuantity] = useState(0);
   const { token } = JSON.parse(localStorage.getItem('user'));
   const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const saveProducts = async () => {
@@ -71,7 +73,13 @@ export default function Product() {
       >
         +
       </button>
-      <button type="button">{`Ver carrinho: R$${totalPrice}`}</button>
+      <button
+        onClick={ () => navigate('/customer/checkout') }
+        type="button"
+      >
+        {`Ver carrinho: R$${totalPrice}`}
+
+      </button>
     </div>
   );
 }
