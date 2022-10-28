@@ -3,6 +3,7 @@ const md5 = require('md5');
 const { UserModel } = require('../../database/models');
 const ErrorNotFound = require('../errors/ErrorNotFound');
 const ErrorUnauthorized = require('../errors/ErrorUnauthorized');
+const generateToken = require('../utils/generateToken');
 require('express-async-errors');
 
 const loginService = {
@@ -14,7 +15,9 @@ const loginService = {
       throw new ErrorUnauthorized('Invalid password');
     }
     delete user.dataValues.password;
-    return user.dataValues;
+    delete user.dataValues.id;
+    const token = await generateToken(email);
+    return { ...user.dataValues, token };
   },
   create: async (name, email, password) => {
     const user = await UserModel.findOne({
