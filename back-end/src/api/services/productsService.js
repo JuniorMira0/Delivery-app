@@ -1,17 +1,19 @@
 const { Product } = require('../../database/models');
+const ErrorNotFound = require('../errors/ErrorNotFound');
+require('express-async-errors');
 
 const getAll = async () => {
   const response = await Product.findAll();
 
-  return { statusCode: 200, result: response };
+  return response;
 };
 
 const getById = async (id) => {
   const response = await Product.findOne({ where: { id } });
 
-  if (!response) { return { statusCode: 404, result: { message: 'Product does not exist' } }; }
+  if (!response) throw new ErrorNotFound('Product does not exist');
 
-  return { statusCode: 200, result: response };
+  return response;
 };
 
 module.exports = {

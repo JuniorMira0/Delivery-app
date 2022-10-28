@@ -3,6 +3,8 @@ services:
   frontend:
     container_name: app_frontend
     build: ./front-end
+    volumes:
+      - ./front-end:/app-frontend/
     ports:
       - 3000:3000
     working_dir: /app-frontend
