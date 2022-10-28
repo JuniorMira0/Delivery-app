@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 /* eslint-disable react-func/max-lines-per-function */
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -14,7 +15,7 @@ describe('Testa o correto funcionamento da pagina de Register', () => {
   it(`Verifica se input de nome existe e 
   ao digitar "teste" o mesmo é atualizado `, () => {
     renderWithRouter('/register');
-    const inputName = screen.getByTestId('6');
+    const inputName = screen.getByTestId('common_register__input-name');
     expect(inputName).toBeInTheDocument();
     expect(inputName).toHaveValue('');
     userEvent.type(inputName, 'teste');
@@ -23,7 +24,7 @@ describe('Testa o correto funcionamento da pagina de Register', () => {
   it(`Verifica se input de email existe e 
   ao digitar "teste" o mesmo é atualizado `, () => {
     renderWithRouter('/register');
-    const inputEmail = screen.getByTestId('7');
+    const inputEmail = screen.getByTestId('common_register__input-email');
     expect(inputEmail).toBeInTheDocument();
     expect(inputEmail).toHaveValue('');
     userEvent.type(inputEmail, 'teste');
@@ -32,7 +33,7 @@ describe('Testa o correto funcionamento da pagina de Register', () => {
   it(`Verifica se input de senha existe e 
   ao digitar "teste" o mesmo é atualizado `, () => {
     renderWithRouter('/register');
-    const inputPassword = screen.getByTestId('7');
+    const inputPassword = screen.getByTestId('common_register__input-email');
     expect(inputPassword).toBeInTheDocument();
     expect(inputPassword).toHaveValue('');
     userEvent.type(inputPassword, 'teste');
@@ -41,8 +42,8 @@ describe('Testa o correto funcionamento da pagina de Register', () => {
   it(`Verifica se a propriedade disabled do 
   botão é true quando dados de input estão invalidos`, () => {
     renderWithRouter('/register');
-    const inputEmail = screen.getByTestId('7');
-    const inputPassword = screen.getByTestId('8');
+    const inputEmail = screen.getByTestId('common_register__input-email');
+    const inputPassword = screen.getByTestId('common_register__input-password');
     const buttonRegister = screen.getByRole('button', { name: 'Cadastrar' });
     userEvent.type(inputEmail, 'emailInvalido');
     userEvent.type(inputPassword, 'inv');
@@ -51,9 +52,9 @@ describe('Testa o correto funcionamento da pagina de Register', () => {
   it(`Verifica se a propriedade disabled do 
   botão é false quando dados de input estão validos`, () => {
     renderWithRouter('/register');
-    const inputName = screen.getByTestId('6');
-    const inputEmail = screen.getByTestId('7');
-    const inputPassword = screen.getByTestId('8');
+    const inputName = screen.getByTestId('common_register__input-name');
+    const inputEmail = screen.getByTestId('common_register__input-email');
+    const inputPassword = screen.getByTestId('common_register__input-password');
     const buttonRegister = screen.getByRole('button', { name: 'Cadastrar' });
     userEvent.type(inputName, 'teste teste testesd teste');
     userEvent.type(inputEmail, mockUser.email);
@@ -64,9 +65,9 @@ describe('Testa o correto funcionamento da pagina de Register', () => {
     jest.spyOn(mockApi, 'newRegister');
     mockApi.newRegister.mockReturnValue();
     renderWithRouter('/register');
-    const inputName = screen.getByTestId('6');
-    const inputEmail = screen.getByTestId('7');
-    const inputPassword = screen.getByTestId('8');
+    const inputName = screen.getByTestId('common_register__input-name');
+    const inputEmail = screen.getByTestId('common_register__input-email');
+    const inputPassword = screen.getByTestId('common_register__input-password');
     const buttonRegister = screen.getByRole('button', { name: 'Cadastrar' });
     userEvent.type(inputName, 'teste teste testes teste');
     userEvent.type(inputEmail, mockUser.email);
@@ -85,9 +86,9 @@ describe('Testa o correto funcionamento da pagina de Register', () => {
     jest.spyOn(mockApi, 'newRegister');
     mockApi.newRegister.mockRejectedValue(errorConflit);
     renderWithRouter('/register');
-    const inputName = screen.getByTestId('6');
-    const inputEmail = screen.getByTestId('7');
-    const inputPassword = screen.getByTestId('8');
+    const inputName = screen.getByTestId('common_register__input-name');
+    const inputEmail = screen.getByTestId('common_register__input-email');
+    const inputPassword = screen.getByTestId('common_register__input-password');
     const buttonRegister = screen.getByRole('button', { name: 'Cadastrar' });
     userEvent.type(inputName, 'teste teste teste teste');
     userEvent.type(inputEmail, mockUser.email);

@@ -53,7 +53,7 @@ export default function Register() {
           <input
             type="text"
             name="name"
-            data-testid={ 6 }
+            data-testid="common_register__input-name"
             onChange={ handleInput }
             value={ user.name }
           />
@@ -64,7 +64,7 @@ export default function Register() {
           <input
             type="text"
             name="email"
-            data-testid={ 7 }
+            data-testid="common_register__input-email"
             onChange={ handleInput }
             value={ user.email }
           />
@@ -75,7 +75,7 @@ export default function Register() {
           <input
             type="text"
             name="password"
-            data-testid={ 8 }
+            data-testid="common_register__input-password"
             onChange={ handleInput }
             value={ user.password }
           />
@@ -84,13 +84,13 @@ export default function Register() {
         <button
           type="button"
           disabled={ disabledBtnLogin }
-          data-testid={ 9 }
+          data-testid="common_register__button-register"
           onClick={ newAccount }
         >
           Cadastrar
         </button>
         <Link to="/login">Já tenho uma conta</Link>
-        {alert && <p data-testid={ 10 }>{alert}</p>}
+        {alert && <p data-testid="common_register__element-invalid_register">{alert}</p>}
       </form>
     </div>
   );

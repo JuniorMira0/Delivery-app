@@ -52,7 +52,7 @@ export default function Login() {
           <input
             type="email"
             name="email"
-            data-testid={ 1 }
+            data-testid="common_login__input-email"
             onChange={ handleInput }
             value={ user.email }
           />
@@ -63,7 +63,7 @@ export default function Login() {
           <input
             type="password"
             name="password"
-            data-testid={ 2 }
+            data-testid="common_login__input-password"
             onChange={ handleInput }
             value={ user.password }
           />
@@ -72,12 +72,17 @@ export default function Login() {
         <button
           type="button"
           disabled={ disabledBtnLogin }
-          data-testid={ 3 }
+          data-testid="common_login__button-login"
           onClick={ newSession }
         >
           Login
         </button>
-        <Link to="/register" data-testid={ 4 }>Ainda não tenho conta</Link>
+        <Link
+          to="/register"
+          data-testid="common_login__button-register"
+        >
+          Ainda não tenho conta
+        </Link>
         {alert && <p data-testid="common_login__element-invalid-email">{alert}</p>}
       </form>
     </div>
