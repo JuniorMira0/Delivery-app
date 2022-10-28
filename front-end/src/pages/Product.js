@@ -1,16 +1,17 @@
+import { useEffect, useState } from 'react';
 import NavBar from '../components/Navbar';
+import getProducts from '../services/product';
 
 export default function Product() {
   const [products] = useState([]);
   const [quantity, setQuantity] = useState(0);
 
-  // componentDidMount
-
-  /*   useEffect(async () => {
+  useEffect(async () => {
     // Estrutura da comunicação com API
-    // const data = await fetch('[URL]').json();
-    // setProducts(data);
-  }, []); */
+    const data = await getProducts();
+
+    setProducts(data);
+  }, []);
 
   return (
     <div>
