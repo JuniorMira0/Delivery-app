@@ -6,6 +6,7 @@ export default function Product() {
   const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(0);
   const { token } = JSON.parse(localStorage.getItem('user'));
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     const saveProducts = async () => {
@@ -15,6 +16,16 @@ export default function Product() {
     };
     saveProducts();
   }, []);
+
+  const addItem = (price) => {
+    setQuantity(quantity + 1);
+    setTotalPrice(totalPrice + price);
+  };
+
+  const removeItem = (price) => {
+    setQuantity(quantity - 1);
+    setTotalPrice(totalPrice - price);
+  };
 
   return (
     <div>
@@ -31,14 +42,14 @@ export default function Product() {
               <span>
                 <button
                   type="button"
-                  onClick={ () => setQuantity(quantity - 1) }
+                  onClick={ () => removeItem(price) }
                 >
                   -
                 </button>
                 <input type="number" value={ quantity } />
                 <button
                   type="button"
-                  onClick={ () => setQuantity(quantity + 1) }
+                  onClick={ () => addItem(price) }
                 >
                   +
                 </button>
@@ -47,6 +58,20 @@ export default function Product() {
           );
         })
       }
+      <button
+        type="button"
+        onClick={ () => setQuantity(quantity - 1) }
+      >
+        -
+      </button>
+      <input type="number" value={ quantity } />
+      <button
+        type="button"
+        onClick={ () => setQuantity(quantity + 1) }
+      >
+        +
+      </button>
+      <button type="button">{`Ver carrinho: R$${totalPrice}`}</button>
     </div>
   );
 }
