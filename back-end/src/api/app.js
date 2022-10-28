@@ -1,8 +1,8 @@
 const express = require('express');
+require('express-async-errors');
 const loginRoute = require('./routes/loginRoute');
 const productsRouter = require('./routes/productsRouter');
 const registerRoute = require('./routes/registerRoute');
-require('express-async-errors');
 
 const app = express();
 

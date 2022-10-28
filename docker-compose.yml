@@ -22,7 +22,7 @@ services:
       - 3001:3001
     working_dir: /app-backend
     volumes:
-      - ./back-end/src:/app-backend/src
+      - ./back-end:/app-backend/
     depends_on:
       db:
         condition: service_healthy
@@ -32,7 +32,7 @@ services:
       - JWT_SECRET=secret_key
       # Os dados abaixo se referem ao container `db`
       # Dica: Relembre aqui da comunicação interna entre containers
-      - MYSQL_HOST=db
+      - HOSTNAME=db
       - MYSQL_PORT=3306
       - MYSQL_DB_NAME=delivery-app
       - MYSQL_USER=root
