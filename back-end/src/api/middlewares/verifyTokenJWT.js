@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-const fs = require('fs').promises;
+require('express-async-errors');
 
-const JWT_SECRET = async () => fs.readFile('./jwt.evaluation.key', 'utf-8');
+const { JWT_SECRET } = process.env;
 
 module.exports = async (req, res, next) => {
   const token = req.headers.authorization;

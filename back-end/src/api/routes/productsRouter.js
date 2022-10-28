@@ -1,10 +1,10 @@
 const express = require('express');
-const jwt = require('../middlewares/jwt');
+const verifyTokenJWT = require('../middlewares/verifyTokenJWT');
 const productsController = require('../controllers/productsController');
 
 const router = express.Router();
 
-router.get('/', jwt, productsController.getAll);
-router.get('/:id', jwt, productsController.getById);
+router.get('/', verifyTokenJWT, productsController.getAll);
+router.get('/:id', verifyTokenJWT, productsController.getById);
 
 module.exports = router;
