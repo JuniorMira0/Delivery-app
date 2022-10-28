@@ -10,3 +10,9 @@ export const authenticationUser = async ({ email, password }) => {
 
   return Promise.resolve({ user: mockLogin });
 };
+
+export const newRegister = async ({ name, email, password }) => {
+  console.log(email, password, name);
+
+  return Promise.resolve();
+};
