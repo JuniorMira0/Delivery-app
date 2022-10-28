@@ -1,18 +1,16 @@
-export const mockLogin = {
-  name: 'Nome Da Pessoa Usuária',
-  email: 'email@dominio.com',
-  role: 'customer',
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCWlua75eT8uJnSbfadNE',
-};
+import api from '.';
 
 export const authenticationUser = async ({ email, password }) => {
-  console.log(email, password);
-
-  return Promise.resolve({ user: mockLogin });
+  const response = await api.post('/login', {
+    email,
+    password,
+  });
+  console.log(response);
+  return response.data;
 };
 
 export const newRegister = async ({ name, email, password }) => {
-  console.log(email, password, name);
-
-  return Promise.resolve();
+  const response = await api.post('/register', { name, email, password });
+  console.log(response);
+  return response.data;
 };

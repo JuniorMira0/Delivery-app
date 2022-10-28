@@ -1,5 +1,6 @@
 const express = require('express');
 require('express-async-errors');
+const cors = require('cors');
 const loginRoute = require('./routes/loginRoute');
 const productsRouter = require('./routes/productsRouter');
 const registerRoute = require('./routes/registerRoute');
@@ -8,6 +9,7 @@ const app = express();
 
 app.use(express.json());
 
+app.use(cors());
 app.use('/login', loginRoute);
 app.use('/products', productsRouter);
 app.use('/register', registerRoute);
