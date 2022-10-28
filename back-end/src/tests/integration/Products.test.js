@@ -4,7 +4,6 @@ const chaiHttp = require('chai-http');
 const app = require('../../api/app');
 const { ProductsModel } = require('../../database/models');
 const { allProducts, token } = require('../mocks/productMock');
-const { describe } = require('pm2');
 
 chai.use(chaiHttp);
 
