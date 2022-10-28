@@ -17,7 +17,7 @@ const options = {
     suffix[environment] || suffix.test
   }`,
   username: process.env.MYSQL_USER || "root",
-  password: process.env.MYSQL_ROOT_PASSWORD || "123456",
+  password: process.env.MYSQL_PASSWORD || "123456",
   dialect: "mysql",
   dialectOptions: {
     timezone: "Z",

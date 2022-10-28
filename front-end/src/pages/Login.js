@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authenticationUser } from '../services/user';
 import { userLogin } from '../redux/userSlice';
@@ -9,6 +9,7 @@ export default function Login() {
     email: '',
     password: '',
   });
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [alert, setAlert] = useState('');
   const [disabledBtnLogin, setDisableBtnLogin] = useState(true);
@@ -35,6 +36,7 @@ export default function Login() {
     try {
       const response = await authenticationUser(user);
       dispatch(userLogin(response.user));
+      navigate('/customer/products');
     } catch (error) {
       if (error.response.status === NOT_FOUND) {
         return setAlert('Usuário não encontrado!');
@@ -77,13 +79,18 @@ export default function Login() {
         >
           Login
         </button>
-        <Link
-          to="/register"
-          data-testid="common_login__button-register"
-        >
-          Ainda não tenho conta
+        <Link to="/register">
+          <button
+            type="button"
+            data-testid="common_login__button-register"
+            onClick={ newSession }
+          >
+            register
+          </button>
         </Link>
-        {alert && <p data-testid="common_login__element-invalid-email">{alert}</p>}
+        {alert && (
+          <p data-testid="common_login__element-invalid-email">{alert}</p>
+        )}
       </form>
     </div>
   );

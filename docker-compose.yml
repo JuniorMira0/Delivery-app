@@ -38,7 +38,7 @@ services:
       - MYSQL_PORT=3306
       - MYSQL_DB_NAME=delivery-app
       - MYSQL_USER=root
-      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_PASSWORD=123456
       - NODE_ENV=development
     healthcheck:
       test: ['CMD', 'lsof', '-t', '-i:3001'] # Caso utilize outra porta interna para o back, altere ela aqui também
