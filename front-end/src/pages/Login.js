@@ -35,7 +35,9 @@ export default function Login() {
   const newSession = async () => {
     try {
       const response = await authenticationUser(user);
-      dispatch(userLogin({ ...response }));
+      dispatch(userLogin(response));
+      localStorage.setItem('user', JSON.stringify(response));
+
       navigate('/customer/products');
     } catch (error) {
       if (error.response.status === NOT_FOUND) {

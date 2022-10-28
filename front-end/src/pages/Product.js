@@ -1,16 +1,21 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import NavBar from '../components/Navbar';
+import { selectToken } from '../redux/userSlice';
 import getProducts from '../services/product';
 
 export default function Product() {
-  const [products] = useState([]);
+  const [products, setProducts] = useState([]);
   const [quantity, setQuantity] = useState(0);
+  const { token } = useSelector(selectToken);
 
-  useEffect(async () => {
-    // Estrutura da comunicação com API
-    const data = await getProducts();
+  useEffect(() => {
+    const saveProducts = async () => {
+      const data = await getProducts(token);
 
-    setProducts(data);
+      setProducts([...data]);
+    };
+    saveProducts();
   }, []);
 
   return (

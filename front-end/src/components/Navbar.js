@@ -1,8 +1,5 @@
-import { useSelector } from 'react-redux';
-import { selectUser } from '../redux/userSlice';
-
 export default function NavBar() {
-  const { name } = useSelector(selectUser);
+  const { name } = JSON.parse(localStorage.getItem('user'));
 
   return (
     <nav>
