@@ -35,7 +35,7 @@ export default function Register() {
   const newAccount = async () => {
     try {
       await newRegister(user);
-      navigate('/login');
+      navigate('/customer/products');
     } catch (error) {
       if (error.response.status === CONFLIT) {
         return setAlert('Usuário já cadastrado!');
