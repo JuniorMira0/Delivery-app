@@ -17,7 +17,7 @@ export default function Products() {
       setProducts([...data]);
     };
     saveProducts();
-  }, []);
+  }, [token]);
 
   const checkoutPage = () => {
     if (totalPrice > 0) {
