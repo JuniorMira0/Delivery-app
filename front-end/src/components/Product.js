@@ -20,15 +20,16 @@ export default function Product(props) {
   };
 
   const defineQuantity = async ({ target }, priceProduct) => {
-    // remove the CURRENT price amount of THIS product
-    const removeCurrentProductAmount = totalPrice - (quantity * priceProduct);
-    if (removeCurrentProductAmount > 0) {
-      totalPriceFunc(removeCurrentProductAmount);
-    } else {
-      totalPriceFunc(0);
+    console.log('Atual: ', target.value, ' Anterior: ', quantity);
+
+    if (target.value < 0) {
+      target.value = 0;
     }
+
+    const addTotal = totalPrice
+      + (target.value * Number(priceProduct) - (quantity * Number(priceProduct)));
+    totalPriceFunc(addTotal);
     setQuantity(Number(target.value));
-    // totalPriceFunc(totalPrice + (Number(target.value) * Number(priceProduct)));
   };
 
   return (
