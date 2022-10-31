@@ -20,8 +20,6 @@ export default function Product(props) {
   };
 
   const defineQuantity = async ({ target }, priceProduct) => {
-    console.log('Atual: ', target.value, ' Anterior: ', quantity);
-
     if (target.value < 0) {
       target.value = 0;
     }
