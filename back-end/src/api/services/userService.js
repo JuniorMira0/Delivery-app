@@ -33,7 +33,11 @@ const loginService = {
       password: hashedPassword,
       role: 'customer',
     });
-
+    const token = await generateToken(email);
+    newUser.token = token
+    delete newUser.id
+    delete newUser.password
+    console.log(newUser);
     return newUser;
   },
 };

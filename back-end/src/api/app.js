@@ -4,6 +4,7 @@ const cors = require('cors');
 const loginRoute = require('./routes/loginRoute');
 const productsRouter = require('./routes/productsRouter');
 const registerRoute = require('./routes/registerRoute');
+const productsController = require("../api/controllers/productsController");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors());
 app.use('/login', loginRoute);
 app.use('/products', productsRouter);
 app.use('/register', registerRoute);
+app.use('/images/:image', productsController.getImage);
 
 app.use((err, _req, res, _next) =>
   res.status(err.code || 500).json({ message: `${err.message}` }));

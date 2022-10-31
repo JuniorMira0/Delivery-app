@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import api from '../services';
 
 export default function Product(props) {
   const { product, totalPrice, totalPriceFunc } = props;
-  const { id, name, url_image: urlImage, price } = product;
-
+  const { id, name, urlImage, price } = product;
   const [quantity, setQuantity] = useState(0);
 
   const addItem = (priceProduct) => {
@@ -28,8 +28,6 @@ export default function Product(props) {
       totalPriceFunc(0);
     }
     setQuantity(Number(target.value));
-
-    console.log(target.value);
     // totalPriceFunc(totalPrice + (Number(target.value) * Number(priceProduct)));
   };
 
@@ -44,7 +42,7 @@ export default function Product(props) {
       <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ urlImage }
+        src={ api.get(`${urlImage}`) }
         alt={ name }
       />
       <span>
