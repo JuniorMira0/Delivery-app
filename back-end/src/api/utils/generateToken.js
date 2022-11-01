@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 require('express-async-errors');
 
 const JWT_CONFIG = {
