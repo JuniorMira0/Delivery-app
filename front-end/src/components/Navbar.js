@@ -17,10 +17,16 @@ export default function NavBar() {
         <a href="#t">Meus pedidos</a>
       </li>
       <li data-testid="customer_products__element-navbar-user-full-name">
-        <a href="#t">{ name }</a>
+        <a href="#t">{name}</a>
       </li>
-      <li data-testid="customer_products__element-navbar-link-logout">
-        <a href="/login" onClick={ () => logout() }>Sair</a>
+      <li>
+        <a
+          href="/login"
+          data-testid="customer_products__element-navbar-link-logout"
+          onClick={ () => logout() }
+        >
+          Sair
+        </a>
       </li>
     </nav>
   );
