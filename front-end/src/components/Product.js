@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import api from '../services';
 
 export default function Product(props) {
   const { product, totalPrice, totalPriceFunc } = props;
@@ -32,16 +31,13 @@ export default function Product(props) {
 
   return (
     <div key={ id }>
-      <p
-        data-testid={ `customer_products__element-card-price-${id}` }
-      >
-        { price.replace('.', ',') }
-
+      <p data-testid={ `customer_products__element-card-price-${id}` }>
+        {price.replace('.', ',')}
       </p>
-      <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
+      <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
-        src={ api.get(`${urlImage}`) }
+        src={ urlImage }
         alt={ name }
       />
       <span>

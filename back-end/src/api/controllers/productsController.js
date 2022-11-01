@@ -12,11 +12,6 @@ const getById = async (req, res) => {
   return res.status(200).json(result);
 };
 
-const getImage = async (req, res) => { 
-  const { image } = req.params;
-  return res.status(200).json(image);
-};
-
 module.exports = {
   getAll,
   getById,
