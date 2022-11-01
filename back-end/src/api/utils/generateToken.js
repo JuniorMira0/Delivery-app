@@ -9,9 +9,9 @@ const JWT_CONFIG = {
 
 const JWT_SECRET = fs.readFileSync('./jwt.evaluation.key', 'utf-8');
 
-const generateToken = async (email) => {
+const generateToken = async (id) => {
   try {
-     const token = jwt.sign({ email }, JWT_SECRET, JWT_CONFIG);
+     const token = jwt.sign({ id }, JWT_SECRET, JWT_CONFIG);
      return token;
   } catch (error) {
     console.log(error);
