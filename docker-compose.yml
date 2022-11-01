@@ -31,7 +31,6 @@ services:
     command: npm run dev
     environment:
       - APP_PORT=3001
-      - JWT_SECRET=secret_key
       # Os dados abaixo se referem ao container `db`
       # Dica: Relembre aqui da comunicação interna entre containers
       - HOSTNAME=db
