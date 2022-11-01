@@ -37,16 +37,49 @@ export default function Checkout() {
         </tr>
         {carShop.map((product, index) => (
           <tr key={ index }>
-            <td>{index + 1}</td>
-            <td>{product.name}</td>
-            <td>{product.qtd}</td>
-            <td>{product.price}</td>
-            <td>{product.qtd * product.price}</td>
-            <button type="button">Remover</button>
+            <td
+              data-testid={
+                `customer_checkout__element-order-table-item-number-${index}`
+              }
+            >
+              {index + 1}
+            </td>
+            <td
+              data-testid={ `customer_checkout__element-order-table-name-${index}` }
+            >
+              {product.name}
+            </td>
+            <td
+              data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+            >
+              {product.qtd}
+            </td>
+            <td
+              data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
+            >
+              {product.price}
+            </td>
+            <td
+              data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
+            >
+              {product.qtd * product.price}
+            </td>
+            <button
+              data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+              type="button"
+            >
+              Remover
+
+            </button>
           </tr>
         ))}
       </table>
-      <h2>{`Total: R$ ${totalPrice()}`}</h2>
+      <h2
+        data-testid="customer_checkout__element-order-total-price"
+      >
+        {`Total: R$ ${totalPrice()}`}
+
+      </h2>
     </div>
   );
 }
