@@ -16,6 +16,6 @@ app.use('/register', registerRoute);
 app.use(express.static('public'));
 
 app.use((err, _req, res, _next) =>
-  res.status(err.code || 500).json({ message: `${err.message}` }));
+  res.status(err.code || 500).json({ error: `${err.message}` }));
 
 module.exports = app;
