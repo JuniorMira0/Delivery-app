@@ -8,7 +8,6 @@ const getAll = async (_req, res) => {
 
 const getById = async (req, res) => {
   const result = await productsService.getById(req.params.id);
-
   return res.status(200).json(result);
 };
 

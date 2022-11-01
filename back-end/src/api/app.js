@@ -4,7 +4,6 @@ const cors = require('cors');
 const loginRoute = require('./routes/loginRoute');
 const productsRouter = require('./routes/productsRouter');
 const registerRoute = require('./routes/registerRoute');
-const productsController = require('./controllers/productsController');
 
 const app = express();
 
