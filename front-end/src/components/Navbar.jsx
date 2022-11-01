@@ -1,8 +1,5 @@
-// import { useNavigate } from 'react-router-dom';
-
 export default function NavBar() {
   const { name } = JSON.parse(localStorage.getItem('user'));
-  // const navigate = useNavigate();
 
   const logout = () => {
     localStorage.removeItem('user');
