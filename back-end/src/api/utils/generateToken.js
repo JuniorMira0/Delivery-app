@@ -1,15 +1,13 @@
 const jwt = require('jsonwebtoken');
-const fs = require("fs");
+const fs = require('fs');
 require('express-async-errors');
-
-// const { JWT_SECRET } = process.env;
 
 const JWT_CONFIG = {
   expiresIn: '7d',
   algorithm: 'HS256',
 };
 
-const JWT_SECRET = fs.readFileSync("jwt.evaluation.key", "utf-8");
+const JWT_SECRET = fs.readFileSync('jwt.evaluation.key", "utf-8');
 
 const generateToken = async (email) => {
   try {
