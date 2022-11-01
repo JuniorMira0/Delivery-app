@@ -34,9 +34,9 @@ const loginService = {
       role: 'customer',
     });
     const token = await generateToken(email);
-    newUser.token = token
-    delete newUser.id
-    delete newUser.password
+    newUser.token = token;
+    delete newUser.id;
+    delete newUser.password;
     console.log(newUser);
     return newUser;
   },

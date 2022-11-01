@@ -13,9 +13,9 @@ const getById = async (req, res) => {
 };
 
 const getImage = async (req, res) => { 
-  const { image } = req.params
+  const { image } = req.params;
   return res.status(200).json(image);
-}
+};
 
 module.exports = {
   getAll,
