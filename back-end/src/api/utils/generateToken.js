@@ -7,7 +7,7 @@ const JWT_CONFIG = {
   algorithm: 'HS256',
 };
 
-const JWT_SECRET = fs.readFileSync('jwt.evaluation.key", "utf-8');
+const JWT_SECRET = fs.readFileSync('./jwt.evaluation.key', 'utf-8');
 
 const generateToken = async (email) => {
   try {
