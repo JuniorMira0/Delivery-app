@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
   }
 
   try {
-    const secret = await JWT_SECRET();
+    const secret = JWT_SECRET;
 
     const decodeToken = jwt.verify(token, secret);
 

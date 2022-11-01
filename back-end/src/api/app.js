@@ -13,6 +13,7 @@ app.use(cors());
 app.use('/login', loginRoute);
 app.use('/products', productsRouter);
 app.use('/register', registerRoute);
+app.use(express.static('public'));
 
 app.use((err, _req, res, _next) =>
   res.status(err.code || 500).json({ message: `${err.message}` }));

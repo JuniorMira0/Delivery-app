@@ -27,13 +27,16 @@ const loginService = {
     if (user) return false;
 
     const hashedPassword = md5(password);
-    const newUser = await UserModel.create({
+    const { dataValues: newUser } = await UserModel.create({
       name,
       email,
       password: hashedPassword,
       role: 'customer',
     });
-
+    const token = await generateToken(email);
+    newUser.token = token;
+    delete newUser.id;
+    delete newUser.password;
     return newUser;
   },
 };

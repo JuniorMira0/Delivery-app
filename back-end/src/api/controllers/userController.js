@@ -12,7 +12,7 @@ const loginController = {
 
     if (!user) return res.status(409).json({ message: 'Conflict' });
 
-    return res.status(201).json({ message: 'Created' });
+    return res.status(201).json(user);
   },
 };
 module.exports = loginController;

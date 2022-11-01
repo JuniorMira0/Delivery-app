@@ -5,12 +5,11 @@ export const authenticationUser = async ({ email, password }) => {
     email,
     password,
   });
-  console.log(response);
   return response.data;
 };
 
 export const newRegister = async ({ name, email, password }) => {
   const response = await api.post('/register', { name, email, password });
-  console.log(response);
+  localStorage.setItem('user', JSON.stringify(response.data));
   return response.data;
 };

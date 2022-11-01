@@ -1,4 +1,13 @@
+// import { useNavigate } from 'react-router-dom';
+
 export default function NavBar() {
+  const { name } = JSON.parse(localStorage.getItem('user'));
+  // const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem('user');
+  };
+
   return (
     <nav>
       <li data-testid="customer_products__element-navbar-link-products">
@@ -8,10 +17,10 @@ export default function NavBar() {
         <a href="#t">Meus pedidos</a>
       </li>
       <li data-testid="customer_products__element-navbar-user-full-name">
-        <a href="#t">[Nome cliente]</a>
+        <a href="#t">{ name }</a>
       </li>
       <li data-testid="customer_products__element-navbar-link-logout">
-        <a href="#t">Sair</a>
+        <a href="/login" onClick={ () => logout() }>Sair</a>
       </li>
     </nav>
   );
