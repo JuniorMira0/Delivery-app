@@ -12,6 +12,30 @@ export default function Product(props) {
 
   const products = useSelector((state) => state.products);
 
+  const modifyProductSaved = (currentQuantity, productSaved) => {
+    if (currentQuantity === 0) {
+      let indexProduct;
+      products.forEach((data, index) => {
+        if (data.name === productSaved.name) {
+          indexProduct = index;
+        }
+      });
+      const copyProducts = [...products];
+
+      const productRemoved = copyProducts.splice(1, indexProduct);
+
+      return productRemoved;
+    }
+
+    const productUpdated = products.map((data) => {
+      const dataToSave = data.name === name
+        ? { ...data, quantity: currentQuantity } : data;
+      return dataToSave;
+    });
+
+    return productUpdated;
+  };
+
   const saveItems = (currentQuantity) => {
     const productSaved = products.find(({ name: nameSaved }) => nameSaved === name);
 
@@ -19,11 +43,7 @@ export default function Product(props) {
       const productCartData = { name, price, quantity: currentQuantity };
       dispatch(actionAddProduct(productCartData));
     } else {
-      const productUpdated = products.map((data) => {
-        const dataToSave = data.name === name
-          ? { ...data, quantity: currentQuantity } : data;
-        return dataToSave;
-      });
+      const productUpdated = modifyProductSaved(currentQuantity, productSaved);
 
       dispatch(actionUpdateProduct(productUpdated));
     }
