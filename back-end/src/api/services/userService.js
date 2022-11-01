@@ -15,8 +15,8 @@ const loginService = {
       throw new ErrorUnauthorized('Invalid password');
     }
     delete user.dataValues.password;
+    const token = await generateToken(user.dataValues.id);
     delete user.dataValues.id;
-    const token = await generateToken(email);
     return { ...user.dataValues, token };
   },
   create: async (name, email, password) => {
@@ -33,7 +33,7 @@ const loginService = {
       password: hashedPassword,
       role: 'customer',
     });
-    const token = await generateToken(email);
+    const token = await generateToken(newUser.id);
     newUser.token = token;
     delete newUser.id;
     delete newUser.password;
