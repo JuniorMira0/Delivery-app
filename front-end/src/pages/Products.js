@@ -41,9 +41,12 @@ export default function Products() {
       <button
         onClick={ () => checkoutPage() }
         type="button"
-        data-testid="customer_products__checkout-bottom-value"
+        disabled={ totalPrice === 0 }
+        data-testid="customer_products__button-cart"
       >
-        {totalPrice.toFixed(2).replace('.', ',')}
+        <p data-testid="customer_products__checkout-bottom-value">
+          {totalPrice.toFixed(2).replace('.', ',')}
+        </p>
       </button>
     </div>
   );

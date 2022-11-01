@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function Product(props) {
   const { product, totalPrice, totalPriceFunc } = props;
-  const { id, name, url_image: urlImage, price } = product;
-
+  const { id, name, urlImage, price } = product;
   const [quantity, setQuantity] = useState(0);
 
   const addItem = (priceProduct) => {
@@ -20,28 +19,22 @@ export default function Product(props) {
   };
 
   const defineQuantity = async ({ target }, priceProduct) => {
-    // remove the CURRENT price amount of THIS product
-    const removeCurrentProductAmount = totalPrice - (quantity * priceProduct);
-    if (removeCurrentProductAmount > 0) {
-      totalPriceFunc(removeCurrentProductAmount);
-    } else {
-      totalPriceFunc(0);
+    if (target.value < 0) {
+      target.value = 0;
     }
-    setQuantity(Number(target.value));
 
-    console.log(target.value);
-    // totalPriceFunc(totalPrice + (Number(target.value) * Number(priceProduct)));
+    const addTotal = totalPrice
+      + (target.value * Number(priceProduct) - (quantity * Number(priceProduct)));
+    totalPriceFunc(addTotal);
+    setQuantity(Number(target.value));
   };
 
   return (
     <div key={ id }>
-      <p
-        data-testid={ `customer_products__element-card-price-${id}` }
-      >
-        { price.replace('.', ',') }
-
+      <p data-testid={ `customer_products__element-card-price-${id}` }>
+        {price.replace('.', ',')}
       </p>
-      <p data-testid={ `customer_products__element-card-title-${id}` }>{ name }</p>
+      <p data-testid={ `customer_products__element-card-title-${id}` }>{name}</p>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ urlImage }
