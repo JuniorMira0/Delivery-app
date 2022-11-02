@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
+import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 
 export default function Orders() {
+  const navigate = useNavigate();
   const sales = [
     {
       id: 1,
@@ -30,7 +32,11 @@ export default function Orders() {
         sales.map((sale) => {
           const { id, sale_date: saleDate, status, total_price: totalPrice } = sale;
           return (
-            <div key={ id }>
+            <button
+              type="button"
+              key={ id }
+              onClick={ () => navigate(`/customer/orders/${id}`) }
+            >
               <p data-testid={ `customer_orders__element-order-id-${id}` }>
                 Pedido
                 <span>{ id }</span>
@@ -44,7 +50,7 @@ export default function Orders() {
               <span data-testid={ `customer_orders__element-card-price-${id}` }>
                 { totalPrice }
               </span>
-            </div>
+            </button>
           );
         })
       }
