@@ -1,17 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionProduct, selecProduct } from '../redux/userProducts';
 import NavBar from '../components/Navbar';
 
-const produtcsMock = [
-  { name: 'produto 1', qtd: 2, price: 2.5 },
-  { name: 'produto 2', qtd: 1, price: 1.5 },
-  { name: 'produto 3', qtd: 2, price: 3.5 },
-];
-
 export default function Checkout() {
-  const [carShop, setCarShop] = useState([]);
-  useEffect(() => {
-    setCarShop(produtcsMock);
-  }, []);
+  const [carShop, setCarShop] = useState(useSelector(selecProduct) || []);
+  // const dispatch = useDispatch();
 
   const totalPrice = () => {
     let total = 0;

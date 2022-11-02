@@ -1,23 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const INITIAL_STATE = [{
-  name: '',
-  price: 0,
-  urlImage: '',
-}];
+const produtcsMock = [
+  { name: 'produto 1', qtd: 2, price: 2.5 },
+  { name: 'produto 2', qtd: 1, price: 1.5 },
+  { name: 'produto 3', qtd: 2, price: 3.5 },
+];
 
-export const userSlice = createSlice({
+const INITIAL_STATE = [...produtcsMock];
+
+export const productsSlice = createSlice({
   name: 'products',
   initialState: INITIAL_STATE,
   reducers: {
     actionProduct(state, { payload }) {
       return { ...state, payload };
     },
+    actionRemoveItem(state, index) {
+      const newState = state.findIndex((i) => i !== index);
+      return { ...newState };
+    },
   },
 });
 
-export const { actionProduct } = userSlice.actions;
+export const { actionProduct, actionRemoveItem } = productsSlice.actions;
 
 export const selecProduct = (state) => state.products;
 
-export default userSlice.reducer;
+export default productsSlice.reducer;
