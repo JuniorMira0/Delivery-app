@@ -1,20 +1,66 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionAddProduct, actionUpdateProduct } from '../redux/userProducts';
 
 export default function Product(props) {
   const { product, totalPrice, totalPriceFunc } = props;
   const { id, name, urlImage, price } = product;
   const [quantity, setQuantity] = useState(0);
 
+  const dispatch = useDispatch();
+
+  const products = useSelector((state) => state.products);
+
+  const modifyProductSaved = (currentQuantity, productSaved) => {
+    if (currentQuantity === 0) {
+      let indexProduct;
+      products.forEach((data, index) => {
+        if (data.name === productSaved.name) {
+          indexProduct = index;
+        }
+      });
+      const copyProducts = [...products];
+
+      const productRemoved = copyProducts.splice(1, indexProduct);
+
+      return productRemoved;
+    }
+
+    const productUpdated = products.map((data) => {
+      const dataToSave = data.name === name
+        ? { ...data, quantity: currentQuantity } : data;
+      return dataToSave;
+    });
+
+    return productUpdated;
+  };
+
+  const saveItems = (currentQuantity) => {
+    const productSaved = products.find(({ name: nameSaved }) => nameSaved === name);
+
+    if (!productSaved) {
+      const productCartData = { name, price, quantity: currentQuantity };
+      dispatch(actionAddProduct(productCartData));
+    } else {
+      const productUpdated = modifyProductSaved(currentQuantity, productSaved);
+
+      dispatch(actionUpdateProduct(productUpdated));
+    }
+  };
+
   const addItem = (priceProduct) => {
     setQuantity(quantity + 1);
     totalPriceFunc(totalPrice + Number(priceProduct));
+
+    saveItems(quantity + 1);
   };
 
   const removeItem = (priceProduct) => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
       totalPriceFunc(totalPrice - Number(priceProduct));
+      saveItems(quantity - 1);
     }
   };
 
@@ -27,6 +73,8 @@ export default function Product(props) {
       + (target.value * Number(priceProduct) - (quantity * Number(priceProduct)));
     totalPriceFunc(addTotal);
     setQuantity(Number(target.value));
+
+    saveItems(target.value);
   };
 
   return (
@@ -39,6 +87,7 @@ export default function Product(props) {
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ urlImage }
         alt={ name }
+        width="240px"
       />
       <span>
         <button

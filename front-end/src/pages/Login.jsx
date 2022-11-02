@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { authenticationUser } from '../services/user';
-import { userLogin } from '../redux/userSlice';
+import { actionUserLogin } from '../redux/userSlice';
 
 export default function Login() {
   const [user, setUser] = useState({
@@ -35,7 +35,7 @@ export default function Login() {
   const newSession = async () => {
     try {
       const response = await authenticationUser(user);
-      dispatch(userLogin(response));
+      dispatch(actionUserLogin(response));
       localStorage.setItem('user', JSON.stringify(response));
 
       navigate('/customer/products');
