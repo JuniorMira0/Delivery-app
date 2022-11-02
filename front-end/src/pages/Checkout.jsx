@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 import CarShop from '../components/CarShop';
+import CheckoutDetails from '../components/CheckoutDetails';
 
 export default function Checkout() {
   const navigate = useNavigate();
@@ -16,32 +17,8 @@ export default function Checkout() {
       <h1>Checkout</h1>
       <p>Finalizar Pedido</p>
       <CarShop />
+      <CheckoutDetails />
 
-      <div>
-        <h3>Detalhes e Endereços para Entrega</h3>
-        <label htmlFor="sale">
-          P. Vendedora Responsável
-          <select data-testid="customer_checkout__select-seller">
-            <option>
-              Fulana Pereira
-            </option>
-          </select>
-        </label>
-        <label htmlFor="address">
-          Endereço
-          <input
-            data-testid="customer_checkout__input-address"
-            type="text"
-          />
-        </label>
-        <label htmlFor="number">
-          Número
-          <input
-            data-testid="customer_checkout__input-address-number"
-            type="text"
-          />
-        </label>
-      </div>
       <button
         type="button"
         data-testid="customer_checkout__button-submit-order"
