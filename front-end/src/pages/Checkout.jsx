@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { actionProduct, selecProduct } from '../redux/userProducts';
+import { useSelector } from 'react-redux';
+import { selectProduct } from '../redux/userProducts';
 import NavBar from '../components/Navbar';
 
 export default function Checkout() {
-  const [carShop, setCarShop] = useState(useSelector(selecProduct) || []);
+  const [carShop] = useState(useSelector(selectProduct) || []);
   // const dispatch = useDispatch();
 
   const totalPrice = () => {
     let total = 0;
     carShop.forEach((product) => {
-      total += product.price * product.qtd;
+      total += product.price * product.quantity;
     });
     return total;
   };
@@ -46,7 +46,7 @@ export default function Checkout() {
             <td
               data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
             >
-              {product.qtd}
+              {product.quantity}
             </td>
             <td
               data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
@@ -56,7 +56,7 @@ export default function Checkout() {
             <td
               data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
             >
-              {product.qtd * product.price}
+              {product.quantity * product.price}
             </td>
             <button
               data-testid={ `customer_checkout__element-order-table-remove-${index}` }
