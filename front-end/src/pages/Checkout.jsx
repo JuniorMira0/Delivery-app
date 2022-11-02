@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { selectProduct } from '../redux/userProducts';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { selectProduct, actionRemoveItem } from '../redux/userProducts';
 import NavBar from '../components/Navbar';
 
 export default function Checkout() {
-  const [carShop] = useState(useSelector(selectProduct) || []);
-  // const dispatch = useDispatch();
-
+  const products = useSelector(selectProduct);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const totalPrice = () => {
     let total = 0;
-    carShop.forEach((product) => {
+    products.forEach((product) => {
       total += product.price * product.quantity;
     });
-    return total;
+    return total.toFixed(2).replace('.', ',');
+  };
+
+  const removeItemInShopCar = (index) => {
+    dispatch(actionRemoveItem(index));
+  };
+
+  const finalizedBuy = () => {
+    navigate('customer/orders/1');
   };
 
   return (
@@ -29,7 +38,7 @@ export default function Checkout() {
           <td>Subtotal</td>
           <td>Remover Item</td>
         </tr>
-        {carShop.map((product, index) => (
+        {products.map((product, index) => (
           <tr key={ index }>
             <td
               data-testid={
@@ -51,16 +60,17 @@ export default function Checkout() {
             <td
               data-testid={ `customer_checkout__element-order-table-unit-price-${index}` }
             >
-              {product.price}
+              {product.price.replace('.', ',')}
             </td>
             <td
               data-testid={ `customer_checkout__element-order-table-sub-total-${index}` }
             >
-              {product.quantity * product.price}
+              {String((product.quantity * product.price).toFixed(2)).replace('.', ',')}
             </td>
             <button
               data-testid={ `customer_checkout__element-order-table-remove-${index}` }
               type="button"
+              onClick={ () => removeItemInShopCar(index) }
             >
               Remover
 
@@ -74,6 +84,39 @@ export default function Checkout() {
         {`Total: R$ ${totalPrice()}`}
 
       </h2>
+
+      <div>
+        <h3>Detalhes e Endereços para Entrega</h3>
+        <label htmlFor="sale">
+          P. Vendedora Responsável
+          <select data-testid="customer_checkout__select-seller">
+            <option>
+              Fulana Pereira
+            </option>
+          </select>
+        </label>
+        <label htmlFor="address">
+          Endereço
+          <input
+            data-testid="customer_checkout__input-address"
+            type="text"
+          />
+        </label>
+        <label htmlFor="number">
+          Número
+          <input
+            data-testid="customer_checkout__input-address-number"
+            type="text"
+          />
+        </label>
+      </div>
+      <button
+        type="button"
+        data-testid="customer_checkout__button-submit-order"
+        onClick={ finalizedBuy }
+      >
+        Finalizar Pedido
+      </button>
     </div>
   );
 }
