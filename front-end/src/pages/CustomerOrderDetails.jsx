@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NavBar from '../components/Navbar';
 import dataTestIds from '../utils/dataTestIds';
 import { getSale } from '../services/customerOrderDetails';
@@ -20,7 +20,7 @@ export default function CustomerOrderDetails() {
   const [salesDetails, setSalesDetails] = useState(mockDetails);
   const { idSale } = useParams();
 
-  useMemo(() => {
+  useEffect(() => {
     const sale = async (id) => {
       const saleDB = await getSale(id);
       setSalesDetails(mockDetails || saleDB);
