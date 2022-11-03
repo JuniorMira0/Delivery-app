@@ -11,12 +11,12 @@ const app = express();
 app.use(express.json());
 
 app.use(cors());
-app.use(express.static('public'));
 
 app.use('/login', loginRoute);
 app.use('/products', productsRouter);
 app.use('/register', registerRoute);
 app.use('/customer/orders', customerRoutes);
+app.use(express.static('public'));
 
 app.use((err, _req, res, _next) =>
   res.status(err.code || 500).json({ error: `${err.message}` }));
