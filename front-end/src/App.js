@@ -6,24 +6,21 @@ import Register from './pages/Register';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
 import SellerOrders from './pages/SellerOrders';
-import Order from './pages/Order';
-import OrderDetails from './pages/OrderDetails';
+import CustomerOrder from './pages/CustomerOrder';
+import SellerOrderDetails from './pages/SellerOrderDetails';
 import CustomerOrderDetails from './pages/CustomerOrderDetails';
 
 function App() {
   return (
     <Routes>
+      <Route path="/" element={ <Navigate to="/login" replace /> } />
       <Route path="/login" element={ <Login /> } />
       <Route path="/register" element={ <Register /> } />
       <Route path="/customer/products" element={ <Products /> } />
       <Route path="/customer/checkout" element={ <Checkout /> } />
-      <Route path="/customer/orders" element={ <Order /> } />
-      <Route path="/seller/orders/:id" element={ <OrderDetails /> } />
-      <Route path="/" element={ <Navigate to="/login" replace /> } />
-      <Route
-        path="/customer/orders/:idSale"
-        element={ <CustomerOrderDetails /> }
-      />
+      <Route path="/customer/orders" element={ <CustomerOrder /> } />
+      <Route path="/seller/orders/:id" element={ <SellerOrderDetails /> } />
+      <Route path="/customer/orders/:idSale" element={ <CustomerOrderDetails /> } />
       <Route path="/seller/orders" element={ <SellerOrders /> } />
     </Routes>
   );

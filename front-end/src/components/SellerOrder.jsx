@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import dataTestIds from '../utils/dataTestIds';
 
 export default function SellerOrder(props) {
   const { order } = props;
@@ -6,13 +7,13 @@ export default function SellerOrder(props) {
 
   return (
     <div>
-      <p data-testid={ `seller_orders__element-order-id-${id}` }>{`Pedido ${id}`}</p>
-      <div data-testid={ `seller_orders__element-delivery-status-${id}` }>{status}</div>
+      <p data-testid={ `${dataTestIds[48]}${id}` }>{`Pedido ${id}`}</p>
+      <div data-testid={ `${dataTestIds[49]}${id}` }>{status}</div>
       <div>
-        <p data-testid={ `seller_orders__element-order-date-${id}` }>{saleDate}</p>
-        <p data-testid={ `seller_orders__element-card-price-${id}` }>{totalPrice}</p>
+        <p data-testid={ `${dataTestIds[50]}${id}` }>{saleDate}</p>
+        <p data-testid={ `${dataTestIds[51]}${id}` }>{totalPrice}</p>
       </div>
-      <p data-testid={ `seller_orders__element-card-address-${id}` }>
+      <p data-testid={ `${dataTestIds[52]}${id}` }>
         {`${deliveryAddress}, ${deliveryNumber}`}
       </p>
     </div>
