@@ -5,6 +5,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
+import Orders from './pages/Orders';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         path="/"
         element={ <Navigate to="/login" replace /> }
       />
+      <Route path="/seller/orders" element={ <Orders /> } />
     </Routes>
   );
 }
