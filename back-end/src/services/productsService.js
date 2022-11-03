@@ -1,4 +1,4 @@
-const { Product } = require('../../database/models');
+const { Product } = require('../database/models');
 const ErrorNotFound = require('../errors/ErrorNotFound');
 require('express-async-errors');
 
