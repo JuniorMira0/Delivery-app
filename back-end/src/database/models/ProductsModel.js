@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const ProductsTable = sequelize.define(
-    "Product",
+    "ProductsModel",
     {
       id: {
         allowNull: false,
