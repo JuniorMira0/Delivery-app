@@ -3,6 +3,6 @@ const customerController = require('../controllers/customerController');
 
 const router = Router();
 
-router.get("/", customerController.getAllSales);
+router.get('/', customerController.getAllSales);
 
 module.exports = router;
