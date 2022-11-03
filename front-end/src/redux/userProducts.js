@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const INITIAL_STATE = [];
 
-export const userSlice = createSlice({
+export const productsSlice = createSlice({
   name: 'products',
   initialState: INITIAL_STATE,
   reducers: {
@@ -12,11 +12,16 @@ export const userSlice = createSlice({
     actionUpdateProduct(_state, { payload }) {
       return payload;
     },
+    actionRemoveItem(state, { payload }) {
+      const newState = current(state).filter((_prod, i) => i !== payload);
+      return [...newState];
+    },
   },
 });
 
-export const { actionAddProduct, actionUpdateProduct } = userSlice.actions;
+export const { actionAddProduct,
+  actionUpdateProduct, actionRemoveItem } = productsSlice.actions;
 
 export const selectProduct = (state) => state.products;
 
-export default userSlice.reducer;
+export default productsSlice.reducer;

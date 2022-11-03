@@ -14,17 +14,19 @@ export default function Product(props) {
 
   const modifyProductSaved = (currentQuantity, productSaved) => {
     if (currentQuantity === 0) {
-      let indexProduct;
-      products.forEach((data, index) => {
-        if (data.name === productSaved.name) {
-          indexProduct = index;
-        }
-      });
-      const copyProducts = [...products];
+      // let indexProduct;
+      // products.forEach((data, index) => {
+      //   if (data.name === productSaved.name) {
+      //     indexProduct = index;
+      //   }
+      // });
+      // const copyProducts = [...products];
+      // console.log(copyProducts);
 
-      const productRemoved = copyProducts.splice(1, indexProduct);
+      // const productRemoved = copyProducts.splice(1, indexProduct);
+      // console.log(productRemoved);
 
-      return productRemoved;
+      return products.filter((prod) => prod.name !== productSaved.name);
     }
 
     const productUpdated = products.map((data) => {
@@ -44,7 +46,6 @@ export default function Product(props) {
       dispatch(actionAddProduct(productCartData));
     } else {
       const productUpdated = modifyProductSaved(currentQuantity, productSaved);
-
       dispatch(actionUpdateProduct(productUpdated));
     }
   };
