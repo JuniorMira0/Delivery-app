@@ -1,6 +1,6 @@
 import api from '.';
 
-const { token } = JSON.parse(localStorage.getItem('user'));
+const { token } = JSON.parse(localStorage.getItem('user')) || '';
 
 export const getSale = async (idSale) => {
   const response = await api.get(`/customer/orders/${idSale}`, {
