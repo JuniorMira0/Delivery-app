@@ -1,8 +1,8 @@
 const { Op } = require("sequelize");
 const md5 = require("md5");
-const { UserModel } = require("../../database/models");
-const ErrorNotFound = require("../../errors/ErrorNotFound");
-const ErrorUnauthorized = require("../../errors/ErrorUnauthorized");
+const { UserModel } = require("../database/models");
+const ErrorNotFound = require("../errors/ErrorNotFound");
+const ErrorUnauthorized = require("../errors/ErrorUnauthorized");
 const generateToken = require("../utils/generateToken");
 require("express-async-errors");
 
