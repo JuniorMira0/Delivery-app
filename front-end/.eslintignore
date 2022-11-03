@@ -1,4 +1,5 @@
 *.test.js
+/tests/*.test.js
 serviceWorker.js
 reportWebVitals.js
 setupTests.js

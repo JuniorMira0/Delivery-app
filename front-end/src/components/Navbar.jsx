@@ -12,19 +12,15 @@ export default function NavBar() {
           <a href="#t">Produtos</a>
         </li>)}
       <li data-testid="customer_products__element-navbar-link-orders">
-        <a href="#t">{role === 'customer' ? 'Meus pedidos' : 'Pedidos'}</a>
+        <a href={ role === 'customer' ? '/customer/orders' : '/seller/orders' }>
+          {role === 'customer' ? 'Meus pedidos' : 'Pedidos'}
+        </a>
       </li>
       <li data-testid="customer_products__element-navbar-user-full-name">
-        <a href="#t">{name}</a>
+        <a href="#t">{ name }</a>
       </li>
-      <li>
-        <a
-          href="/login"
-          data-testid="customer_products__element-navbar-link-logout"
-          onClick={ () => logout() }
-        >
-          Sair
-        </a>
+      <li data-testid="customer_products__element-navbar-link-logout">
+        <a href="/login" onClick={ () => logout() }>Sair</a>
       </li>
     </nav>
   );
