@@ -2,7 +2,7 @@
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 
-export default function Orders() {
+export default function OrderCustomer() {
   const navigate = useNavigate();
   const sales = [
     {
