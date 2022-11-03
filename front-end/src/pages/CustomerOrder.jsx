@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar';
+import dataTestIds from '../utils/dataTestIds';
 
 export default function OrderCustomer() {
   const navigate = useNavigate();
@@ -37,17 +38,17 @@ export default function OrderCustomer() {
               key={ id }
               onClick={ () => navigate(`/customer/orders/${id}`) }
             >
-              <p data-testid={ `customer_orders__element-order-id-${id}` }>
+              <p data-testid={ `${dataTestIds[33]}${id}` }>
                 Pedido
                 <span>{ id }</span>
               </p>
-              <p data-testid={ `customer_orders__element-delivery-status-${id}` }>
+              <p data-testid={ `${dataTestIds[34]}${id}` }>
                 { status }
               </p>
-              <p data-testid={ `customer_orders__element-order-date-${id}` }>
+              <p data-testid={ `${dataTestIds[35]}${id}` }>
                 { saleDate }
               </p>
-              <span data-testid={ `customer_orders__element-card-price-${id}` }>
+              <span data-testid={ `${dataTestIds[36]}${id}` }>
                 { totalPrice }
               </span>
             </button>
