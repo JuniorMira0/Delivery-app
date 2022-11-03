@@ -39,5 +39,5 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  return SalesProductsTable;
+  return SalesProductsModel;
 };
