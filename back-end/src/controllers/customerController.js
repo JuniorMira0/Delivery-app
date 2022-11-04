@@ -6,6 +6,13 @@ const getAllOrders = async (_req, res) => {
   res.status(200).json(orders);
 };
 
+const getOrder = async (req, res) => {
+  const { orderId } = req.params;
+  const order = await customerService.getOrder(orderId);
+  res.status(200).json(order);
+};
+
 module.exports = {
   getAllOrders,
+  getOrder,
 };

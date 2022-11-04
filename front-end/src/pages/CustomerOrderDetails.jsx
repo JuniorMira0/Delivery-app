@@ -2,14 +2,14 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import NavBar from '../components/Navbar';
 import dataTestIds from '../utils/dataTestIds';
-import { getSale } from '../services/customerOrderDetails';
+import { getOrder } from '../services/customerOrders';
 
 const mockDetails = {
   id: 1,
   status: 'pendente',
-  sale_date: '01/11/22',
-  name_seller: 'Fulaninho',
-  total_price: 28.46,
+  saleDate: '01/11/22',
+  nameSeller: 'Fulaninho',
+  totalPrice: 28.46,
   products: [
     { name: 'Skol Lata 250ml', quantity: 3, price: 3.5 },
     { name: 'Brahminha', quantity: 98, price: 2 },
@@ -17,16 +17,16 @@ const mockDetails = {
 };
 
 export default function CustomerOrderDetails() {
-  const [salesDetails, setSalesDetails] = useState(mockDetails);
-  const { idSale } = useParams();
+  const [orderDetails, setOrderDetails] = useState(mockDetails);
+  const { idOrder } = useParams();
 
   useEffect(() => {
-    const sale = async (id) => {
-      const saleDB = await getSale(id);
-      setSalesDetails(mockDetails || saleDB);
+    const order = async (id) => {
+      const saleDB = await getOrder(id);
+      setOrderDetails(mockDetails || saleDB);
     };
-    sale(idSale);
-  }, [idSale]);
+    order(idOrder);
+  }, [idOrder]);
 
   return (
     <div className="orderDetails-container">
@@ -35,10 +35,10 @@ export default function CustomerOrderDetails() {
 
       <div>
         <h3>Pedido</h3>
-        <h3 data-testid={ dataTestIds[37] }>{salesDetails.id}</h3>
-        <p data-testid={ dataTestIds[38] }>{salesDetails.name_seller}</p>
-        <h3 data-testid={ dataTestIds[39] }>{salesDetails.sale_date}</h3>
-        <h3 data-testid={ dataTestIds[40] }>{salesDetails.status}</h3>
+        <h3 data-testid={ dataTestIds[37] }>{orderDetails.id}</h3>
+        <p data-testid={ dataTestIds[38] }>{orderDetails.nameSeller}</p>
+        <h3 data-testid={ dataTestIds[39] }>{orderDetails.saleDate}</h3>
+        <h3 data-testid={ dataTestIds[40] }>{orderDetails.status}</h3>
         <button type="button" data-testid={ dataTestIds[47] }>
           MARCAR COMO ENTREGUE
         </button>
@@ -54,7 +54,7 @@ export default function CustomerOrderDetails() {
           </tr>
         </thead>
         <tbody>
-          {salesDetails.products.map((product, i) => (
+          {orderDetails.products.map((product, i) => (
             <tr key={ i }>
               <td data-testid={ `${dataTestIds[41]}${i}` }>{i}</td>
               <td data-testid={ `${dataTestIds[42]}${i}` }>{product.name}</td>
@@ -69,7 +69,7 @@ export default function CustomerOrderDetails() {
       </table>
       <div>
         <h3>Total:</h3>
-        <span data-testid={ dataTestIds[46] }>{salesDetails.total_price}</span>
+        <span data-testid={ dataTestIds[46] }>{orderDetails.totalPrice}</span>
       </div>
     </div>
   );

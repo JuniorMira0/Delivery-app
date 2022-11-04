@@ -9,7 +9,7 @@ export default function NavBar() {
     <nav>
       {role === 'customer' && (
         <li data-testid="customer_products__element-navbar-link-products">
-          <a href="#t">Produtos</a>
+          <a href="/customer/products">Produtos</a>
         </li>
       )}
       <li data-testid="customer_products__element-navbar-link-orders">

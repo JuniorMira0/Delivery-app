@@ -2,7 +2,7 @@ import api from '.';
 
 const { token } = JSON.parse(localStorage.getItem('user')) || '';
 
-export const getSale = async (idSale) => {
+export const getOrder = async (idSale) => {
   const response = await api.get(`/customer/orders/${idSale}`, {
     headers: {
       authorization: token,

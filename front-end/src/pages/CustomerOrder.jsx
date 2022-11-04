@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar';
-import { getAllOrders } from '../services/customerOrderDetails';
+import { getAllOrders } from '../services/customerOrders';
 import dataTestIds from '../utils/dataTestIds';
 
 export default function OrderCustomer() {
