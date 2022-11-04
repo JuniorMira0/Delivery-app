@@ -21,12 +21,8 @@ export const getAllOrders = async () => {
 };
 
 export const createOrder = async (sales) => {
-  const response = await api.post('/customer/orders', {
-    headers: {
-      authorization: token,
-    },
-    sales,
-  });
+  api.defaults.headers.authorization = token;
+  const response = await api.post('/customer/orders', { sales });
   return response.data;
 };
 
