@@ -13,3 +13,8 @@ export const newRegister = async ({ name, email, password }) => {
   localStorage.setItem('user', JSON.stringify(response.data));
   return response.data;
 };
+
+export const getUserSalles = async () => {
+  const response = await api.get('/usersalles');
+  return response;
+};
