@@ -5,6 +5,7 @@ const loginRoute = require('../routes/loginRoute');
 const productsRouter = require('../routes/productsRouter');
 const registerRoute = require('../routes/registerRoute');
 const customerRoutes = require('../routes/customerRoutes');
+const usersallesRouter = require('../routes/usersallesRouter');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use('/login', loginRoute);
 app.use('/products', productsRouter);
 app.use('/register', registerRoute);
 app.use('/customer/orders', customerRoutes);
+app.use('/usersalles', usersallesRouter)
 app.use(express.static('public'));
 
 app.use((err, _req, res, _next) =>
