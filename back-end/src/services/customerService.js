@@ -14,26 +14,21 @@ const getAllOrders = async (userId) => {
 };
 
 const getOrder = async (orderId) => {
-  const { dataValues } = await SalesModel.findOne({
+  const response = await SalesModel.findOne({
     where: { id: orderId },
   });
+  const { id, status, saleDate, totalPrice, sellerId } = response.dataValues;
+
   const {
     dataValues: { name: nameSeller },
   } = await UserModel.findOne({
     where: {
-      id: dataValues.sellerId,
+      id: sellerId,
     },
   });
+  const order = { id, status, saleDate, totalPrice, nameSeller };
 
-  delete dataValues.deliveryAddress;
-  delete dataValues.deliveryNumber;
-  delete dataValues.sellerId;
-  delete dataValues.userId;
-
-  return {
-    nameSeller,
-    ...dataValues,
-  };
+  return order;
 };
 
 module.exports = {
