@@ -12,7 +12,7 @@ export const getSale = async (idSale) => {
 };
 
 export const getAllOrders = async () => {
-  const response = await api.get('/customer/orders/', {
+  const response = await api.get('/customer/orders', {
     headers: {
       authorization: token,
     },

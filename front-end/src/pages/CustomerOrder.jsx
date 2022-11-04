@@ -1,12 +1,12 @@
 /* eslint-disable max-len */
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 import { getAllOrders } from '../services/customerOrderDetails';
 import dataTestIds from '../utils/dataTestIds';
 
 export default function OrderCustomer() {
-  const [orders, setOrders] = useState();
+  const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
