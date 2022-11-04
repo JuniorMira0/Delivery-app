@@ -8,9 +8,20 @@ const createSale = async (req, res) => {
   return res.status(201).json(sale.id);
 }
 
-const getAllSales = async (_req, res) => res.status(200).json({ message: 'rota customer' });
+const getAllOrders = async (_req, res) => {
+  const { user } = res.locals;
+  const orders = await customerService.getAllOrders(user.id);
+  res.status(200).json(orders);
+};
+
+const getOrder = async (req, res) => {
+  const { orderId } = req.params;
+  const order = await customerService.getOrder(orderId);
+  res.status(200).json(order);
+};
 
 module.exports = {
-  getAllSales,
-  createSale
+  createSale,
+  getAllOrders,
+  getOrder,
 };

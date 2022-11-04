@@ -1,10 +1,11 @@
 const { Router } = require('express');
 const customerController = require('../controllers/customerController');
-const verifyToken = require('../middlewares/verifyTokenJWT');
+const verifyTokenJWT = require('../middlewares/verifyTokenJWT');
 
 const router = Router();
 
-router.get('/', customerController.getAllSales);
-router.post('/', verifyToken, customerController.createSale);
+router.get('/orders', verifyTokenJWT, customerController.getAllOrders);
+router.get('/orders/:orderId', verifyTokenJWT, customerController.getOrder);
+router.post('/orders', verifyTokenJWT, customerController.createSale);
 
 module.exports = router;
