@@ -16,7 +16,6 @@ export default function OrderCustomer() {
     };
     getOrders();
   }, []);
-  // StartDate = moment(StartDate).format('MM-YYYY');
   return (
     <div>
       <NavBar />
