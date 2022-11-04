@@ -33,7 +33,7 @@ export default function CustomerOrderDetails() {
               {moment(new Date(saleDate)).format('DD/MM/YYYY')}
             </h3>
             <h3 data-testid={ dataTestIds[40] }>{status}</h3>
-            <button type="button" data-testid={ dataTestIds[47] }>
+            <button type="button" data-testid={ dataTestIds[47] } disabled>
               MARCAR COMO ENTREGUE
             </button>
           </div>
@@ -67,7 +67,9 @@ export default function CustomerOrderDetails() {
           </table>
           <div>
             <h3>Total:</h3>
-            <span data-testid={ dataTestIds[46] }>{totalPrice}</span>
+            <span data-testid={ dataTestIds[46] }>
+              {totalPrice.replace('.', ',')}
+            </span>
           </div>
         </>
       )}
