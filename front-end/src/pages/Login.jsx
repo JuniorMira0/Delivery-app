@@ -15,17 +15,25 @@ export default function Login() {
   const [disabledBtnLogin, setDisableBtnLogin] = useState(true);
   const MIN_LENGTH_PASSWORD = 6;
   const NOT_FOUND = 404;
+  const userStorage = JSON.parse(localStorage.getItem('user')) || 'notFound';
 
   useEffect(() => {
     const validateInputs = () => {
       const regexEmail = /\S+@\S+\.\S+/;
-      if (regexEmail.test(user.email) && user.password.length >= MIN_LENGTH_PASSWORD) {
+      if (
+        regexEmail.test(user.email)
+        && user.password.length >= MIN_LENGTH_PASSWORD
+      ) {
         return setDisableBtnLogin(false);
       }
       return setDisableBtnLogin(true);
     };
     validateInputs();
   }, [user]);
+
+  useEffect(() => {
+    if (userStorage.token) navigate('/customer/products');
+  }, [userStorage.token, navigate]);
 
   const handleInput = ({ target }) => {
     const { name, value } = target;
@@ -82,10 +90,7 @@ export default function Login() {
           Login
         </button>
         <Link to="/register">
-          <button
-            type="button"
-            data-testid="common_login__button-register"
-          >
+          <button type="button" data-testid="common_login__button-register">
             register
           </button>
         </Link>
