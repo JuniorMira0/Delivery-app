@@ -1,6 +1,6 @@
-/* eslint-disable max-len */
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
 import NavBar from '../components/Navbar';
 import { getAllOrders } from '../services/customerOrders';
 import dataTestIds from '../utils/dataTestIds';
@@ -21,6 +21,8 @@ export default function OrderCustomer() {
       <NavBar />
       {orders.map((sale) => {
         const { id, saleDate, status, totalPrice } = sale;
+        const priceTotal = totalPrice.replace('.', ',');
+        const date = moment(new Date(saleDate)).format('DD/MM/YYYY');
         return (
           <button
             type="button"
@@ -32,8 +34,8 @@ export default function OrderCustomer() {
               <span>{id}</span>
             </p>
             <p data-testid={ `${dataTestIds[34]}${id}` }>{status}</p>
-            <p data-testid={ `${dataTestIds[35]}${id}` }>{saleDate}</p>
-            <span data-testid={ `${dataTestIds[36]}${id}` }>{totalPrice}</span>
+            <p data-testid={ `${dataTestIds[35]}${id}` }>{date}</p>
+            <span data-testid={ `${dataTestIds[36]}${id}` }>{priceTotal}</span>
           </button>
         );
       })}

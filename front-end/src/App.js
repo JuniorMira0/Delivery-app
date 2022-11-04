@@ -13,7 +13,6 @@ import CustomerOrderDetails from './pages/CustomerOrderDetails';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={ <Navigate to="/login" replace /> } />
       <Route path="/login" element={ <Login /> } />
       <Route path="/register" element={ <Register /> } />
       <Route path="/customer/products" element={ <Products /> } />
@@ -22,6 +21,7 @@ function App() {
       <Route path="/seller/orders/:id" element={ <SellerOrderDetails /> } />
       <Route path="/customer/orders/:idOrder" element={ <CustomerOrderDetails /> } />
       <Route path="/seller/orders" element={ <SellerOrders /> } />
+      <Route path="/" element={ <Navigate to="/login" replace /> } />
     </Routes>
   );
 }

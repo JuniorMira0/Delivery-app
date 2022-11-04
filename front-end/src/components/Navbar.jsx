@@ -8,17 +8,30 @@ export default function NavBar() {
   return (
     <nav>
       {role === 'customer' && (
-        <li data-testid="customer_products__element-navbar-link-products">
-          <a href="/customer/products">Produtos</a>
+        <li>
+          <a
+            href="/customer/products"
+            data-testid="customer_products__element-navbar-link-products"
+          >
+            Produtos
+          </a>
         </li>
       )}
-      <li data-testid="customer_products__element-navbar-link-orders">
-        <a href={ role === 'customer' ? '/customer/orders' : '/seller/orders' }>
+      <li>
+        <a
+          href={ role === 'customer' ? '/customer/orders' : '/seller/orders' }
+          data-testid="customer_products__element-navbar-link-orders"
+        >
           {role === 'customer' ? 'Meus pedidos' : 'Pedidos'}
         </a>
       </li>
-      <li data-testid="customer_products__element-navbar-user-full-name">
-        <a href="#t">{name}</a>
+      <li>
+        <a
+          data-testid="customer_products__element-navbar-user-full-name"
+          href="#t"
+        >
+          {name}
+        </a>
       </li>
       <li>
         <a
