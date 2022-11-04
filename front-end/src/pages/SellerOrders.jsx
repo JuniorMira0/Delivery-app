@@ -18,7 +18,7 @@ export default function SellerOrders() {
     <div>
       <Navbar />
       {orders
-      && orders.map((order, index) => <SellerOrder key={ index } order={ order } />)}
+        && orders.map((order, index) => <SellerOrder key={ index } order={ order } />)}
     </div>
   );
 }
