@@ -29,11 +29,4 @@ const getOrders = async () => {
   return mock;
 };
 
-export const createOrder = async (sales) => {
-  console.log(sales);
-  return Promise.resolve(
-    { id: 3 },
-  );
-};
-
 export default getOrders;

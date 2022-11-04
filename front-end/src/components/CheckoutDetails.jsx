@@ -26,16 +26,15 @@ export default function CheckoutDetails({ props }) {
         <select
           data-testid="customer_checkout__select-seller"
           onChange={ handdleInput }
-          name="nameSeller"
+          name="seller"
         >
-          <option>
-            Escolha um vendedor
-          </option>
-          {userSelles && userSelles.map((seller) => (
-            <option key={ seller.id } value={ seller.id }>
-              {seller.name}
-            </option>
-          ))}
+          <option>Escolha um vendedor</option>
+          {userSelles
+            && userSelles.map((seller) => (
+              <option key={ seller.id } value={ seller.id }>
+                {seller.name}
+              </option>
+            ))}
         </select>
       </label>
       <label htmlFor="address">
@@ -44,8 +43,8 @@ export default function CheckoutDetails({ props }) {
           data-testid="customer_checkout__input-address"
           type="text"
           onChange={ handdleInput }
-          name="address"
-          value={ userSelles.address }
+          name="deliveryAddress"
+          value={ userSelles.deliveryAddress }
         />
       </label>
       <label htmlFor="number">
@@ -54,8 +53,8 @@ export default function CheckoutDetails({ props }) {
           data-testid="customer_checkout__input-address-number"
           type="text"
           onChange={ handdleInput }
-          name="number"
-          value={ userSelles.number }
+          name="deliveryNumber"
+          value={ userSelles.deliveryNumber }
         />
       </label>
     </div>

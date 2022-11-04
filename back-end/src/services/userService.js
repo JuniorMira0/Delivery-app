@@ -7,9 +7,9 @@ const generateToken = require('../utils/generateToken');
 require('express-async-errors');
 
 const loginService = {
-  getUserSalles: async() => {
+  getUserSalles: async () => {
     const userSalles = await UserModel.findAll({
-      where: {role: 'seller'}, attributes: ['id', 'name']
+      where: { role: 'seller' }, attributes: ['id', 'name'],
     });
     return userSalles;
   },
