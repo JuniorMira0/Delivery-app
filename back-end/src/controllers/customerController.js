@@ -1,7 +1,11 @@
-// const customerService = require('../services/customerService');
+const customerService = require('../services/customerService');
 
-const getAllSales = async (_req, res) => res.status(200).json({ message: 'rota customer' });
+const getAllOrders = async (_req, res) => {
+  const { user } = res.locals;
+  const orders = await customerService.getAllOrders(user.id);
+  res.status(200).json(orders);
+};
 
 module.exports = {
-  getAllSales,
+  getAllOrders,
 };
