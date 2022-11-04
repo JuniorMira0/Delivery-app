@@ -16,8 +16,8 @@ app.use(cors());
 app.use('/login', loginRoute);
 app.use('/products', productsRouter);
 app.use('/register', registerRoute);
-app.use('/customer/orders', customerRoutes);
 app.use('/usersalles', usersallesRouter)
+app.use('/customer', customerRoutes);
 app.use(express.static('public'));
 
 app.use((err, _req, res, _next) =>
