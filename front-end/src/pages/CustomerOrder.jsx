@@ -19,7 +19,7 @@ export default function OrderCustomer() {
   return (
     <div>
       <NavBar />
-      {orders.map((sale) => {
+      {orders && orders.map((sale) => {
         const { id, saleDate, status, totalPrice } = sale;
         const priceTotal = totalPrice.replace('.', ',');
         const date = moment(new Date(saleDate)).format('DD/MM/YYYY');

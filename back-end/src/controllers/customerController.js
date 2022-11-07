@@ -1,4 +1,5 @@
 const customerService = require('../services/customerService');
+const userSellersService = require('../services/userSellersService');
 
 const createSale = async (req, res) => {
   const saleInfo = req.body;
@@ -20,8 +21,15 @@ const getOrder = async (req, res) => {
   res.status(200).json(order);
 };
 
+const changeStatus = async (req, res) => {
+  const { id, status } = req.body;
+  const order = await userSellersService.changeStatus({ id, status });
+  return res.status(200).json(order);
+};
+
 module.exports = {
   createSale,
   getAllOrders,
   getOrder,
+  changeStatus,
 };

@@ -46,7 +46,7 @@ export default function Login() {
       dispatch(actionUserLogin(response));
       localStorage.setItem('user', JSON.stringify(response));
 
-      navigate('/customer/products');
+      navigate('/');
     } catch (error) {
       if (error.response.status === NOT_FOUND) {
         return setAlert('Usuário não encontrado!');

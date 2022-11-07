@@ -7,12 +7,6 @@ const generateToken = require('../utils/generateToken');
 require('express-async-errors');
 
 const loginService = {
-  getUserSalles: async () => {
-    const userSalles = await UserModel.findAll({
-      where: { role: 'seller' }, attributes: ['id', 'name'],
-    });
-    return userSalles;
-  },
   login: async ({ email, password }) => {
     const user = await UserModel.findOne({ where: { email } });
     if (!user) throw new ErrorNotFound('Invalid fields');

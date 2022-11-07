@@ -4,18 +4,25 @@ import moment from 'moment';
 import NavBar from '../components/Navbar';
 import dataTestIds from '../utils/dataTestIds';
 import { getOrder } from '../services/customerOrders';
+import { changeStatusDB } from '../services/sellerOrders';
 
 export default function CustomerOrderDetails() {
   const [orderDetails, setOrderDetails] = useState(false);
-  const { idOrder } = useParams();
+  const { orderId } = useParams();
 
   useEffect(() => {
     const order = async (id) => {
       const saleDB = await getOrder(id);
       setOrderDetails(saleDB);
     };
-    order(idOrder);
-  }, [idOrder]);
+    order(orderId);
+  }, [orderId]);
+
+  const changeStatus = async ({ target }) => {
+    const status = target.name;
+    const order = await changeStatusDB({ orderId, status });
+    setOrderDetails(order);
+  };
 
   const { id, seller, saleDate, status, products, totalPrice } = orderDetails;
 
@@ -33,7 +40,13 @@ export default function CustomerOrderDetails() {
               {moment(new Date(saleDate)).format('DD/MM/YYYY')}
             </h3>
             <h3 data-testid={ dataTestIds[40] }>{status}</h3>
-            <button type="button" data-testid={ dataTestIds[47] } disabled>
+            <button
+              type="button"
+              data-testid={ dataTestIds[47] }
+              name="Entregue"
+              disabled={ status !== 'Em Trânsito' }
+              onClick={ changeStatus }
+            >
               MARCAR COMO ENTREGUE
             </button>
           </div>

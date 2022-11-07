@@ -5,7 +5,7 @@ const userRoute = require('../routes/userRoute');
 const productsRouter = require('../routes/productsRouter');
 const registerRoute = require('../routes/registerRoute');
 const customerRoutes = require('../routes/customerRoutes');
-const userSallesRouter = require('../routes/userSallesRouter');
+const userSellersRouter = require('../routes/userSellersRouter');
 
 const app = express();
 
@@ -16,7 +16,7 @@ app.use(cors());
 app.use('/login', userRoute);
 app.use('/products', productsRouter);
 app.use('/register', registerRoute);
-app.use('/usersalles', userSallesRouter);
+app.use('/seller', userSellersRouter);
 app.use('/customer', customerRoutes);
 app.use(express.static('public'));
 
