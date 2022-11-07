@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import getOrders from '../services/orders';
+import { getAllOrders } from '../services/sellerOrders';
 import SellerOrder from '../components/SellerOrder';
 import Navbar from '../components/Navbar';
 
 export default function SellerOrders() {
   const [orders, setOrders] = useState();
   useEffect(() => {
-    const saveOrders = async () => {
-      const data = await getOrders();
-
+    const getOrders = async () => {
+      const data = await getAllOrders();
       setOrders(data);
     };
-    saveOrders();
+    getOrders();
   }, []);
 
   return (
