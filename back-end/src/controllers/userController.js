@@ -1,10 +1,6 @@
 const userService = require('../services/userService');
 
 const userController = {
-  getUserSalles: async (req, res) => {
-    const result = await userService.getUserSalles();
-    return res.status(200).json(result);
-  },
   login: async (req, res) => {
     const { email, password } = req.body;
     const login = await userService.login({ email, password });
