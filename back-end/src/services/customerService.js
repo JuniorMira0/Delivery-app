@@ -55,6 +55,18 @@ const getAllOrders = async (userId) => {
   );
   return orders;
 };
+
+const getAllSalesBySellerId = async (sellerId) => {
+  const response = await SalesModel.findAll({
+    where: { sellerId },
+  });
+  const orders = response.reduce(
+    (acc, { id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber }) =>
+      acc.concat({ id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber }),
+    [],
+  );
+  return orders;
+};
     
 const getOrder = async (orderId) => {
   const response = await SalesModel.findOne({
@@ -69,4 +81,5 @@ module.exports = {
   getAllOrders,
   getOrder,
   createSale,
+  getAllSalesBySellerId,
 };
