@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import dataTestIds from '../utils/dataTestIds';
 
 export default function SellerOrder(props) {
@@ -7,7 +8,13 @@ export default function SellerOrder(props) {
 
   return (
     <div>
-      <p data-testid={ `${dataTestIds[48]}${id}` }>{`Pedido ${id}`}</p>
+      <Link
+        to={ `/seller/orders/${id}` }
+        data-testid={ `${dataTestIds[48]}${id}` }
+      >
+        {`Pedido ${id}`}
+
+      </Link>
       <div data-testid={ `${dataTestIds[49]}${id}` }>{status}</div>
       <div>
         <p data-testid={ `${dataTestIds[50]}${id}` }>{saleDate}</p>
