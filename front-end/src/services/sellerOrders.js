@@ -13,3 +13,13 @@ export const getAllOrders = async () => {
   const response = await api.get('/seller/orders');
   return response.data;
 };
+
+export const changeStatusDB = async ({ orderId, status }) => {
+  const { token } = JSON.parse(localStorage.getItem('user')) || '';
+  api.defaults.headers.authorization = token;
+  const response = await api.put('/seller/status', {
+    orderId,
+    status,
+  });
+  return response.data;
+};

@@ -13,8 +13,8 @@ const userSellersController = {
   },
 
   changeStatus: async (req, res) => {
-    const { id, status } = req.body;
-    const order = await userSellersService.changeStatus({ id, status });
+    const { orderId, status } = req.body;
+    const order = await userSellersService.changeStatus({ orderId, status });
     return res.status(200).json(order);
   },
 };

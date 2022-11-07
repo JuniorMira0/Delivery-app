@@ -2,20 +2,26 @@ import moment from 'moment';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NavBar from '../components/Navbar';
-import { getOrder } from '../services/sellerOrders';
+import { getOrder, changeStatusDB } from '../services/sellerOrders';
 import dataTestIds from '../utils/dataTestIds';
 
 export default function SellerOrderDetails() {
   const [orderDetails, setOrdersDetails] = useState();
   const { orderId } = useParams();
+
   useEffect(() => {
     const getOrderDB = async () => {
       const data = await getOrder(orderId);
-      console.log(data);
       setOrdersDetails(data);
     };
     getOrderDB();
   }, [orderId]);
+
+  const changeStatus = async ({ target }) => {
+    const status = target.name;
+    const order = await changeStatusDB({ orderId, status });
+    setOrdersDetails(order);
+  };
 
   return (
     <div>
@@ -31,10 +37,22 @@ export default function SellerOrderDetails() {
             <h3 data-testid={ dataTestIds[55] }>
               {moment(new Date(orderDetails.saleDate)).format('DD/MM/YYYY')}
             </h3>
-            <button type="button" data-testid={ dataTestIds[56] }>
+            <button
+              type="button"
+              name="Preparando"
+              disabled={ orderDetails.status !== 'Pendente' }
+              data-testid={ dataTestIds[56] }
+              onClick={ changeStatus }
+            >
               Preparar pedido
             </button>
-            <button type="button" data-testid={ dataTestIds[57] }>
+            <button
+              type="button"
+              name="Em Trânsito"
+              data-testid={ dataTestIds[57] }
+              disabled={ orderDetails.status !== 'Preparando' }
+              onClick={ changeStatus }
+            >
               Saiu para entrega
             </button>
           </div>
