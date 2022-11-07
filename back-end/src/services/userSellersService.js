@@ -1,12 +1,12 @@
-const { UserModel, SalesModel } = require("../database/models");
-const customerService = require("../services/customerService");
-require("express-async-errors");
+const { UserModel, SalesModel } = require('../database/models');
+const customerService = require('./customerService');
+require('express-async-errors');
 
 const userSellersService = {
   getUserSalles: async () =>
     UserModel.findAll({
-      where: { role: "seller" },
-      attributes: ["id", "name"],
+      where: { role: 'seller' },
+      attributes: ['id', 'name'],
     }),
 
   getAllOrders: async (sellerId) => {
@@ -16,17 +16,10 @@ const userSellersService = {
     const orders = response.reduce(
       (
         acc,
-        { id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber }
+        { id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber },
       ) =>
-        acc.concat({
-          id,
-          status,
-          saleDate,
-          totalPrice,
-          deliveryAddress,
-          deliveryNumber,
-        }),
-      []
+        acc.concat({ id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber }),
+      [],
     );
     return orders;
   },
@@ -39,10 +32,10 @@ const userSellersService = {
         where: {
           id: orderId,
         },
-      }
+      },
    );
-    const newOrder = await customerService.getOrder(orderId)
-    return newOrder
+    const newOrder = await customerService.getOrder(orderId);
+    return newOrder;
   },
 };
 
