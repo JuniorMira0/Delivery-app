@@ -8,12 +8,6 @@ const createSale = async (req, res) => {
   return res.status(201).json(sale.id);
 };
 
-const getAllSalesBySellerId = async (_req, res) => {
-  const { user } = res.locals;
-  const orders = await customerService.getAllSalesBySellerId(user.id);
-  res.status(200).json(orders);
-};
-
 const getAllOrders = async (_req, res) => {
   const { user } = res.locals;
   const orders = await customerService.getAllOrders(user.id);
@@ -30,5 +24,4 @@ module.exports = {
   createSale,
   getAllOrders,
   getOrder,
-  getAllSalesBySellerId,
 };
