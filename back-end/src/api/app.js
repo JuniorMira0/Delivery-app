@@ -20,6 +20,9 @@ app.use('/usersalles', userSallesRouter);
 app.use('/customer', customerRoutes);
 app.use(express.static('public'));
 
-app.use((err, _req, res, _next) => res.status(err.code || 500).json({ error: `${err.message}` }));
+app.use((err, _req, res, _next) => {
+  console.log(err);
+  return res.status(err.code || 500).json({ error: `${err.message}` })
+});
 
 module.exports = app;
