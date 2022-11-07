@@ -11,6 +11,6 @@ router.get('/orders', verifyTokenJWT, userSellersController.getAllOrders);
 
 router.get('/orders/:orderId', verifyTokenJWT, customerController.getOrder);
 
-router.put('/status', userSellersController.changeStatus);
+router.put('/status', verifyTokenJWT, userSellersController.changeStatus);
 
 module.exports = router;
